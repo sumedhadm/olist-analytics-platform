@@ -3,7 +3,6 @@ import {
   LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContainer,
 } from 'recharts';
 import { api } from '../api';
-import { useAuth } from '../AuthContext';
 
 function Card({ label, value }) {
   return (
@@ -15,7 +14,6 @@ function Card({ label, value }) {
 }
 
 export default function Dashboard() {
-  const { user, logout } = useAuth();
   const [kpis, setKpis] = useState(null);
   const [trend, setTrend] = useState([]);
   const [delivery, setDelivery] = useState(null);
@@ -34,15 +32,7 @@ export default function Dashboard() {
   const money = (n) => 'R$ ' + Number(n).toLocaleString('en-US', { maximumFractionDigits: 0 });
 
   return (
-    <div className="page">
-      <header className="topbar">
-        <h2>Olist Analytics</h2>
-        <div>
-          <span className="muted">{user.email} ({user.role})</span>
-          <button className="ghost" onClick={logout}>Log out</button>
-        </div>
-      </header>
-
+    <>
       {error && <p className="error">{error}</p>}
       {!kpis && !error && <p className="muted">Loading...</p>}
 
@@ -61,14 +51,14 @@ export default function Dashboard() {
               <LineChart data={trend}>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="month" />
-                <YAxis />
-                <Tooltip />
+                <YAxis tickFormatter={(v) => v / 1000 + 'k'} />
+                <Tooltip formatter={(v) => money(v)} />
                 <Line type="monotone" dataKey="revenue" stroke="#4f46e5" strokeWidth={2} dot={false} />
               </LineChart>
             </ResponsiveContainer>
           </div>
         </>
       )}
-    </div>
+    </>
   );
 }

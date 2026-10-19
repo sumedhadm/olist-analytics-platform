@@ -35,3 +35,11 @@ button.ghost { background: transparent; color: #4f46e5; margin: 0 0 0 12px; }
 .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 20px; }
 .kpi-value { font-size: 28px; font-weight: 700; margin-top: 6px; }
 .chart-card h3 { margin-bottom: 16px; }
+.nav { display: flex; gap: 8px; margin-bottom: 20px; }
+.nav a {
+  padding: 8px 14px; border-radius: 8px; text-decoration: none;
+  color: #4b5563; background: #fff; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+.nav a.active { background: #4f46e5; color: #fff; }
+.grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap: 16px; }
+.insight { margin-top: 16px; padding: 12px 14px; background: #fff7ed; border-radius: 8px; color: #7c2d12; }

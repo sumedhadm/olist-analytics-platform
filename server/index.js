@@ -83,5 +83,22 @@ app.get('/api/admin/ping', requireAuth, requireRole('admin'), (req, res) => {
   res.json({ message: 'Welcome, admin' });
 });
 
+// Shortcut for "logged-in users can read a view"
+function viewRoute(path, view) {
+  app.get(path, requireAuth, async (req, res) => {
+    try {
+      const { rows } = await pool.query(`SELECT * FROM ${view}`);
+      res.json(rows);
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ error: 'Something went wrong' });
+    }
+  });
+}
+
+viewRoute('/api/category-revenue', 'v_category_revenue');
+viewRoute('/api/state-revenue', 'v_state_revenue');
+viewRoute('/api/delay-impact', 'v_delay_impact');
+
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => console.log(`API running on http://localhost:${PORT}`));
