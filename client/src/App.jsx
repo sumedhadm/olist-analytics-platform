@@ -1,3 +1,4 @@
+import Sellers from './pages/Sellers';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
@@ -22,6 +23,7 @@ export default function App() {
         <Route path="/" element={<Dashboard />} />
         <Route path="/sales" element={<Sales />} />
         <Route path="/delivery" element={<Delivery />} />
+        <Route path="/sellers" element={<Sellers />} />
         <Route
           path="/admin/new-order"
           element={

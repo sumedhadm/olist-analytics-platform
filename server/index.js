@@ -100,7 +100,7 @@ function viewRoute(path, view) {
 viewRoute('/api/category-revenue', 'v_category_revenue');
 viewRoute('/api/state-revenue', 'v_state_revenue');
 viewRoute('/api/delay-impact', 'v_delay_impact');
-
+viewRoute('/api/seller-scorecard', 'v_seller_scorecard');
 // ---------- ADMIN: lookups for the form ----------
 app.get('/api/lookup/categories', requireAuth, requireRole('admin'), async (req, res) => {
   try {
@@ -253,7 +253,7 @@ app.post('/api/admin/orders', requireAuth, requireRole('admin'), async (req, res
   } finally {
     client.release();
   }
-});
+});         
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => console.log(`API running on http://localhost:${PORT}`));
