@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../AuthContext';
 
 export default function Login() {
@@ -16,7 +16,7 @@ export default function Login() {
     setLoading(true);
     try {
       await login(email, password);
-      navigate('/');
+      navigate('/app');
     } catch (err) {
       setError(err.message);
     } finally {
@@ -25,38 +25,43 @@ export default function Login() {
   }
 
   return (
-    <div className="login-wrap">
-      <form className="card login-card" onSubmit={handleSubmit}>
-        <h1>Olist Analytics</h1>
-        <p className="muted">Sign in to view the dashboard</p>
+    <div className="auth">
+      <aside className="auth-side">
+        <Link to="/" className="brand">Olist Analytics</Link>
+        <p className="auth-quote">Orders delivered more than 7 days late average 1.73 stars.</p>
+      </aside>
 
-        <label>Email</label>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="admin@olist.dev"
-          required
-        />
+      <main className="auth-main">
+        <form className="auth-form" onSubmit={handleSubmit}>
+          <h1>Sign in</h1>
+          <p className="muted">Use a demo account to explore the dashboard.</p>
 
-        <label>Password</label>
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
+          <div className="demo">
+            <button type="button" className="btn-quiet"
+              onClick={() => { setEmail('admin@olist.dev'); setPassword('Admin@123'); }}>
+              Use admin demo
+            </button>
+            <button type="button" className="btn-quiet"
+              onClick={() => { setEmail('viewer@olist.dev'); setPassword('Viewer@123'); }}>
+              Use viewer demo
+            </button>
+          </div>
 
-        {error && <p className="error">{error}</p>}
+          <label htmlFor="email">Email</label>
+          <input id="email" type="email" value={email}
+            onChange={(e) => setEmail(e.target.value)} required />
 
-        <button type="submit" disabled={loading}>
-          {loading ? 'Signing in...' : 'Sign in'}
-        </button>
+          <label htmlFor="password">Password</label>
+          <input id="password" type="password" value={password}
+            onChange={(e) => setPassword(e.target.value)} required />
 
-        <p className="muted small">
-          Demo: admin@olist.dev / Admin@123 &nbsp;|&nbsp; viewer@olist.dev / Viewer@123
-        </p>
-      </form>
+          {error && <p className="error">{error}</p>}
+
+          <button type="submit" disabled={loading}>
+            {loading ? 'Signing in...' : 'Sign in'}
+          </button>
+        </form>
+      </main>
     </div>
   );
 }

@@ -53,7 +53,7 @@ export default function Dashboard() {
                 <XAxis dataKey="month" />
                 <YAxis tickFormatter={(v) => v / 1000 + 'k'} />
                 <Tooltip formatter={(v) => money(v)} />
-                <Line type="monotone" dataKey="revenue" stroke="#4f46e5" strokeWidth={2} dot={false} />
+                <Line type="monotone" dataKey="revenue" stroke="#0f766e" strokeWidth={2} dot={false} />
               </LineChart>
             </ResponsiveContainer>
           </div>

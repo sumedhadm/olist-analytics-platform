@@ -33,7 +33,7 @@ export default function Sales() {
               <XAxis type="number" tickFormatter={(v) => v / 1000 + 'k'} />
               <YAxis type="category" dataKey="category" width={140} />
               <Tooltip formatter={(v) => money(v)} />
-              <Bar dataKey="revenue" fill="#4f46e5" />
+              <Bar dataKey="revenue" fill="#0f766e" />
             </BarChart>
           </ResponsiveContainer>
         </div>
@@ -46,7 +46,7 @@ export default function Sales() {
               <XAxis dataKey="state" />
               <YAxis tickFormatter={(v) => v / 1000 + 'k'} />
               <Tooltip formatter={(v) => money(v)} />
-              <Bar dataKey="revenue" fill="#0ea5e9" />
+              <Bar dataKey="revenue" fill="#3b1d5a" />
             </BarChart>
           </ResponsiveContainer>
         </div>
